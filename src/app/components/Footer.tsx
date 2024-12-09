@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className='overflow-x-hidden'>
             <div className='bg-[#e4e4e4] h-[1.2px]'></div>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-3  justify-center items-center   w-[70vw] mx-auto py-20'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3  justify-center items-center   w-[70vw] mx-auto py-20'>
                 <div className='flex flex-col gap-5'>
                     <div className="logo flex gap-2 ">
                         <Image className='' src="/Svg/Logo Icon.svg" width={40} height={40} alt="" />
