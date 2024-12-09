@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 
-const page = () => {
+const Page = () => {
 
   const [carts, setcarts] = useState([
     {
@@ -84,4 +84,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

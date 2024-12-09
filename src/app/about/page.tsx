@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <div className='w-[70vw] mx-auto flex flex-col gap-40 my-32'>
@@ -57,4 +57,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
