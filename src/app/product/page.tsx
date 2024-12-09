@@ -2,7 +2,7 @@ import React from 'react'
 import Newsletter from '../components/Newsletter'
 import Allproducts from '../components/Allproducts'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <div>
@@ -16,4 +16,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

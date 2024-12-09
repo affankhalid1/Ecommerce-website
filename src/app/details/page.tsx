@@ -1,7 +1,7 @@
 import React from 'react'
-import Details from '../components/details'
+import Details from '../components/Details'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <Details/>
@@ -9,4 +9,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

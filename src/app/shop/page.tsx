@@ -2,7 +2,7 @@ import React from 'react'
 import Newsletter from '../components/Newsletter'
 import Allproducts from '../components/Allproducts'
 
-const page = () => {
+const Page = () => {
   return (
     <div className="mb-32">
       <div className="heading text-3xl font-bold text-[#272343] pt-20 pb-6">
@@ -13,4 +13,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
