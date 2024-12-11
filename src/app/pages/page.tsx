@@ -11,3 +11,8 @@ const Page = () => {
 }
 
 export default Page
+
+export const metadata: Metadata = {
+  title: "Blogs - Comforty",
+  description: "Discover the best furniture collection for your interior at Comforty. Shop stylish, comfortable, and high-quality furniture with free shipping on orders over $50. Transform your space today!",
+};

@@ -2,14 +2,15 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-const NavLink = ({ href, children, activeClassName, inactiveClassName, ...props }) => {
+const NavLink = ({ href, children, className, ...props }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
-  const computedClassName = isActive ? activeClassName : inactiveClassName;
+  const computedClassName =
+    typeof className === 'function' ? className(isActive) : className;
 
   return (
-    <Link href={href} {...props} className={computedClassName}>
+    <Link href={href} className={computedClassName} {...props}>
       {children}
     </Link>
   );
