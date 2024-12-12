@@ -6,7 +6,7 @@ import { useState } from 'react'
 const Newsletter = () => {
 const [images, setimages] = useState([
     {
-        imgSrc: "/img/image7.jpg",
+        imgSrc: "/img/Image7.jpg",
         id: 1
     },
     {

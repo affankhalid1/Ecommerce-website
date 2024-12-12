@@ -8,7 +8,7 @@ const FeaturedProducts = () => {
   const [carts, setcarts] = useState([
     {
       offer: "New",
-      imgSrc: "/img/image6.jpg",
+      imgSrc: "/img/Image6.jpg",
       title: "Libray Stool Chair",
       price: "$20",
         id:1

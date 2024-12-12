@@ -35,21 +35,21 @@ const Allproducts = () => {
         },
         {
           offer: "New",
-          imgSrc: "/img/image4.jpg",
+          imgSrc: "/img/Image4.jpg",
           title: "Libray Stool Chair",
           price: "$20",
             id:5
         },
         {
           offer: "Sales",
-          imgSrc: "/img/image5.jpg",
+          imgSrc: "/img/Image5.jpg",
           title: "Libray Stool Chair",
           price: "$20",
           cutPrice: "$30",
           id:6
         },
         {
-          imgSrc: "/img/image6.jpg",
+          imgSrc: "/img/Image6.jpg",
           title: "Libray Stool Chair",
           price: "$20",
           id:7
@@ -62,7 +62,7 @@ const Allproducts = () => {
         },
         {
           offer: "New",
-          imgSrc: "/img/image7.jpg",
+          imgSrc: "/img/Image7.jpg",
           title: "Libray Stool Chair",
           price: "$20",
             id:9
