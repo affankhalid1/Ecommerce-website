@@ -70,13 +70,13 @@ const Navbarbottom = () => {
 
         <div className='nav hidden sm:block'>
         <div className='flex sm:gap-1 md:gap-2 lg:gap-4'>
-        <NavLink href="/" className={(isActive:any) =>isActive ? 'text-[#007580] pl-0 px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] pl-0 px-2.5 py-5 md:p-5 font-[500]'}>Home</NavLink>
-        <NavLink href="/shop" className={(isActive:any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Shop</NavLink>
-        <NavLink href="/product" className={(isActive:any) =>isActive ?' text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Product</NavLink>
-        <NavLink href="/pages" className={(isActive:any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Blogs</NavLink>
-        <NavLink href="/about" className={(isActive:any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>About</NavLink>
-        <NavLink href="/contact" className={`block md:hidden ${(isActive:any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}`}>Contact</NavLink>
-        <NavLink href="/faqs" className={`block md:hidden ${(isActive:any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}`}>Help</NavLink>
+        <NavLink href="/" className={(isActive) =>isActive ? 'text-[#007580] pl-0 px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] pl-0 px-2.5 py-5 md:p-5 font-[500]'}>Home</NavLink>
+        <NavLink href="/shop" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Shop</NavLink>
+        <NavLink href="/product" className={(isActive) =>isActive ?' text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Product</NavLink>
+        <NavLink href="/pages" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Blogs</NavLink>
+        <NavLink href="/about" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>About</NavLink>
+        <NavLink href="/contact" className={`block md:hidden ${(isActive: any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}`}>Contact</NavLink>
+        <NavLink href="/faqs" className={`block md:hidden ${(isActive: any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}`}>Help</NavLink>
 
         </div>
         </div>
