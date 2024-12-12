@@ -2,6 +2,7 @@ import React from 'react'
 import Details from '../components/Details'
 import FeaturedProducts from '../components/FeaturedProducts'
 import Link from 'next/link'
+import type { Metadata } from "next";
 
 const Page = () => {
   return (

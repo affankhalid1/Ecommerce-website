@@ -1,6 +1,7 @@
 import React from 'react'
 import Newsletter from '../components/Newsletter'
 import Allproducts from '../components/Allproducts'
+import type { Metadata } from "next";
 
 const Page = () => {
   return (

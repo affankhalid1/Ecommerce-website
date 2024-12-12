@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Popular from '../components/Popular'
 import Link from 'next/link'
+import type { Metadata } from "next";
 
 
 
@@ -60,7 +61,7 @@ const Page = () => {
 export default Page
 
 
-export const metadata: Metadata = {
+export const metadata:Metadata = {
   title: "About - Comforty",
   description: "Discover the best furniture collection for your interior at Comforty. Shop stylish, comfortable, and high-quality furniture with free shipping on orders over $50. Transform your space today!",
 };
