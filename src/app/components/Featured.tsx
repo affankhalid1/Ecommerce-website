@@ -3,43 +3,20 @@ import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 import Link from 'next/link'
+import { client } from '@/sanity/lib/client'
+import  ImageUrlBuilder  from '@sanity/image-url'
 
-const Featured = () => {
-    const [carts, setcarts] = useState([
-        {
-          offer: "New",
-          imgSrc: "/img/image.jpg",
-          title: "Libray Stool Chair",
-          price: "$20",
-            id:1
-        },
-        {
-          offer: "Sales",
-          imgSrc: "/img/image1.jpg",
-          title: "Libray Stool Chair",
-          price: "$20",
-          cutPrice: "$30",
-          id:2
-        },
-        {
-          imgSrc: "/img/image2.jpg",
-          title: "Libray Stool Chair",
-          price: "$20",
-          id:3
-        },
-        {
-          imgSrc: "/img/image3.jpg",
-          title: "Libray Stool Chair",
-          price: "$20",
-          id:4
-        },
-      
-    ])
+const Featured = async () => {
+  const builder = ImageUrlBuilder(client)
+    let query = `*[ _type == "products" && "featured" in tags][0...4]`
+    const featured = await client.fetch(query)
+
+    console.log(featured)
   return (
     <div>
       <div className='m-5 ml-0 flex flex-wrap justify-center sm:justify-start   gap-x-9 gap-y-10 sm:gap-y-24 w-[101%]'>
-      {carts.map((item) => {
-        return <div key={item.id} className=''>
+      {featured.map((item:any) => {
+        return <div key={item._id} className=''>
           <div className='product-image-with-icons w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] rounded-md relative'>
             <div className='absolute top-2 left-2'>
               {item.offer == "New" &&<div className="discount w-fit bg-[#01AD5A] px-2 py-1 sm:px-4 sm:py-1.5 rounded-[4px]  flex justify-center items-center text-white text-[11px] sm:text-xs">{item.offer}</div>}
@@ -48,7 +25,7 @@ const Featured = () => {
 
             <Link href = "/details">
             <div className=' flex justify-center  items-center w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] bg-[#F5F5F5]'>
-              <Image className=' rounded-lg object-contain' src={item.imgSrc} width={312} height={312} alt='product' />
+              <Image className=' rounded-lg object-contain' src={builder.image(item.image).width(312).height(312).url()} width={312} height={312} alt='product' />
             </div>
             </Link>
           </div>
