@@ -1,4 +1,4 @@
-export default{
+const Category={
     name: 'categories',
     title: 'Categories',
     type: 'document',
@@ -8,6 +8,18 @@ export default{
             title: 'Category Title',
             type: 'string',
         },
+         // slug
+      {
+        title: "Slug",
+        name: "slug",
+        type: "slug",
+        options: {
+          source: "title",
+          maxLength: 200, // will be ignored if slugify is set
+          slugify: (input: string) =>
+            input.toLowerCase().replace(/\s+/g, "-").replace('"', "-inch-").replace("''", "-inch-").replace("&", "-").slice(0, 200),
+        },
+      },
         {
             name: 'image',
             title: 'Category Image',
@@ -20,3 +32,4 @@ export default{
         }
     ],
 }
+ export default Category

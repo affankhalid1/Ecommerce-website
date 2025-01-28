@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Popular from '../components/Popular'
+import Popular from '../../components/Popular'
 import Link from 'next/link'
 import type { Metadata } from "next";
 
