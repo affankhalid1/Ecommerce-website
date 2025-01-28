@@ -1,0 +1,27 @@
+/* styles.css */
+.sofa-specifications {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.sofa-specifications table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.sofa-specifications th, .sofa-specifications td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.sofa-specifications th {
+    background-color: #f3f3f3;
+    font-weight: bold;
+}
+
+.sofa-specifications tr:nth-child(even) {
+    background-color: #fafafa;
+}

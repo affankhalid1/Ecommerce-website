@@ -18,6 +18,7 @@ import dynamics from 'next/dynamic';
 import DescriptionSanity from "@/components/DropdowndetailsSanity";
 import DescriptionHtml from "@/components/DropdownDetailsHtml";
 import DOMPurify from "dompurify";
+import products from "@/src/style/products.module.css";
 const PortableText = dynamics(() => import('react-portable-text'), { ssr: false });
 
 const Product = ({ params }: { params: { slug: string } }) => {
@@ -59,12 +60,161 @@ const Product = ({ params }: { params: { slug: string } }) => {
 
 
   const rawHtml = `
-  <p>This <strong>futon sofa bed</strong> is your versatile solution for small spaces.</p>
-  <ul>
-    <li>Adjustable positions for sitting and reclining</li>
-    <li>Foam-filled cushions for added comfort</li>
-  </ul>
-  <script>alert("XSS Attack!");</script>
+ export default function ProductPage() {
+    return (
+        <div className="sofa-specifications">
+            <h2>Sofa Specifications</h2>
+
+            <table>
+                <tr>
+                    <th colSpan={2}>Other Dimensions</th>
+                </tr>
+                <tr>
+                    <td>Overall</td>
+                    <td>26.4" H X 65" W X 35.4" D</td>
+                </tr>
+                <tr>
+                    <td>Seat</td>
+                    <td>11.8" H X 65" W X 19.7" D</td>
+                </tr>
+                <tr>
+                    <td>Fully Reclined Length/Depth - Front to Back</td>
+                    <td>35.4" D</td>
+                </tr>
+                <tr>
+                    <td>Required Back Clearance to Recline</td>
+                    <td>25"</td>
+                </tr>
+                <tr>
+                    <td>Back Height - Seat to Top of Back</td>
+                    <td>19.3" H</td>
+                </tr>
+                <tr>
+                    <td>Overall Product Weight</td>
+                    <td>66.15 lb.</td>
+                </tr>
+            </table>
+
+            <br />
+
+            <table>
+                <tr>
+                    <th colSpan={2}>Details</th>
+                </tr>
+                <tr>
+                    <td>Product Type</td>
+                    <td>Sofa</td>
+                </tr>
+                <tr>
+                    <td>Back Type</td>
+                    <td>Cushioned</td>
+                </tr>
+                <tr>
+                    <td>Seat Style</td>
+                    <td>Multiple Cushion Seat</td>
+                </tr>
+                <tr>
+                    <td>Upholstery Color</td>
+                    <td>Green</td>
+                </tr>
+                <tr>
+                    <td>Leg Color / Finish</td>
+                    <td>Light Yellow Wood</td>
+                </tr>
+                <tr>
+                    <td>Upholstered</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Upholstery Material</td>
+                    <td>Corduroy</td>
+                </tr>
+                <tr>
+                    <td>Frame Material</td>
+                    <td>Solid Wood</td>
+                </tr>
+                <tr>
+                    <td>Back Fill Material</td>
+                    <td>Foam</td>
+                </tr>
+                <tr>
+                    <td>Cushion Construction</td>
+                    <td>Foam</td>
+                </tr>
+                <tr>
+                    <td>Leg Material</td>
+                    <td>Wood</td>
+                </tr>
+                <tr>
+                    <td>Weight Capacity</td>
+                    <td>600 lb.</td>
+                </tr>
+                <tr>
+                    <td>Sleeper Size</td>
+                    <td>Twin</td>
+                </tr>
+                <tr>
+                    <td>Reversible Cushions</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Adjustability Features</td>
+                    <td>Convertible</td>
+                </tr>
+            </table>
+
+            <br />
+
+            <table>
+                <tr>
+                    <th colSpan={2}>Assembly</th>
+                </tr>
+                <tr>
+                    <td>Assembly Required</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Suggested Number of People for Assembly / Installation</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Additional Tools Required (Not Included)</td>
+                    <td>All Tools Included</td>
+                </tr>
+            </table>
+
+            <br />
+
+            <table>
+                <tr>
+                    <th colSpan={2}>Warranty</th>
+                </tr>
+                <tr>
+                    <td>Commercial Warranty</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Commercial Warranty Length</td>
+                    <td>1 Year</td>
+                </tr>
+                <tr>
+                    <td>Product Warranty</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Warranty Length</td>
+                    <td>1 Year</td>
+                </tr>
+                <tr>
+                    <td>Full or Limited Warranty</td>
+                    <td>Limited</td>
+                </tr>
+            </table>
+        </div>
+    );
+}
+
+
 `;
 
 // Sanitize the raw HTML
@@ -165,7 +315,7 @@ console.log(sanitizedHtml);
               <Description title="Return Policy" content= " Not loving it? We offer returns for most items within 30 days of delivery for a refund or store credit." />
               </div>
               <div>
-              <DescriptionHtml  title="Shipping Policy" content={sanitizedHtml}/>
+              <DescriptionHtml  title="Specifications" content={sanitizedHtml}/>
               </div>
             </div>
           </div>
