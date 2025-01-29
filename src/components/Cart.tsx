@@ -6,12 +6,15 @@ import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import ImageUrlBuilder from "@sanity/image-url";
 import { DeleteItem } from "@/actions/Deleteitem";
+import {useRouter} from "next/navigation";
 
 
 const Cart = () => {
   const builder = ImageUrlBuilder(client);
 
   const { user } = useUser(); // Extract the authenticated user
+
+  const router = useRouter();
 
   if (!user) {
     return <div className=' p-6 text-3xl text-[#757575]'>Please Signup</div>;
@@ -152,7 +155,7 @@ const Cart = () => {
                 <div>${total}</div>
               </div>
               <div className="bg-[#e4e4e4] h-[1.2px]"></div>
-              <button className="w-full bg-[#029FAE] rounded-full py-3 text-center text-white flex justify-center">
+              <button onClick={() => router.push("/checkout")} className="w-full bg-[#029FAE] rounded-full py-3 text-center text-white flex justify-center">
                 <span className="hidden lg:block">Member &nbsp;</span> Checkout
               </button>
             </div>

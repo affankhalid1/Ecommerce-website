@@ -16,6 +16,8 @@
     "@sanity/client": "^6.25.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.70.0",
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.6.0",
     "dompurify": "^3.2.3",
     "next": "14.2.2",
     "next-sanity": "^9.8.38",
@@ -24,6 +26,7 @@
     "react-portable-text": "^0.6.0",
     "react-redux": "^9.2.0",
     "sanity": "^3.70.0",
+    "stripe": "^17.6.0",
     "styled-components": "^6.1.14",
     "tailwind-scrollbar": "^3.1.0"
   },

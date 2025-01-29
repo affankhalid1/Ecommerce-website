@@ -1,10 +1,10 @@
 import Ourproducts from "../components/Ourproducts";
 import Featured from "../components/Featured";
 import Welcome from "../components/Welcome";
-import Brands from "../components/Brands";
 import Carousel from "@/components/Carousel";
 import Category from "../components/Category";
 import ExplorenewProducts from "../components/ExplorenewProducts";
+
 
 
 export default function Home() {
@@ -23,6 +23,7 @@ export default function Home() {
       Our Products
     </div>
     <Ourproducts/>
+    
     </div>
   );
 }
