@@ -24,28 +24,29 @@ const ImageZoom = ({ src }: { src: string }) => {
 
   return (
     <div
-      className="relative w-[300px] h-[300px] sm:w-[650px] sm:h-[650px] overflow-hidden cursor-zoom-in"
-      onClick={handleImageClick}
-      onMouseMove={handleMouseMove}
-      style={{
-        backgroundImage: `url(${src})`,
-        backgroundSize: isZoomed ? "200%" : "contain", // Zoomed in or original size
-        backgroundPosition: isZoomed ? `${cursorPos.x}% ${cursorPos.y}%` : "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Placeholder for the alt text */}
-      {!isZoomed && (
-        <Image
-          className="w-full h-full object-contain"
-          src={src}
-          alt="product"
-          width={800}
-          height={800}
-          draggable={false}
-        />
-      )}
-    </div>
+  className="relative w-full max-w-[500px] h-auto sm:max-w-[650px] md:max-w-[750px] lg:max-w-[850px] overflow-hidden cursor-zoom-in"
+  onClick={handleImageClick}
+  onMouseMove={handleMouseMove}
+  style={{
+    backgroundImage: `url(${src})`,
+    backgroundSize: isZoomed ? "200%" : "contain", // Zoomed in or original size
+    backgroundPosition: isZoomed ? `${cursorPos.x}% ${cursorPos.y}%` : "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  {/* Show image when not zoomed */}
+  {!isZoomed && (
+    <Image
+      className="w-full h-auto object-contain"
+      src={src}
+      alt="product"
+      width={500} // Adjusted to match the example
+      height={500} // Adjusted to match the example
+      draggable={false}
+    />
+  )}
+</div>
+
   );
 };
 

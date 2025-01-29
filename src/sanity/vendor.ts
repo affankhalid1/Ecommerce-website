@@ -1,4 +1,4 @@
-export default {
+ const Vendors = {
     name: "vendors",
     title: "Vendors",
     type: "document",
@@ -26,3 +26,5 @@ export default {
       
     ],
 };
+
+export default Vendors

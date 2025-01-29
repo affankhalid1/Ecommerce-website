@@ -1,4 +1,4 @@
-export default {
+const Beds =  {
     name: "beds",
     title: "Beds",
     type: "document",
@@ -218,3 +218,5 @@ export default {
     ],
   };
   
+
+  export default Beds

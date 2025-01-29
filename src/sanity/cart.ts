@@ -1,4 +1,4 @@
-export default{
+const Cart = {
     name: "cartItems",
   title: "cart",
   type: "document",
@@ -10,3 +10,5 @@ export default{
     },
 ]
 }
+
+export default Cart

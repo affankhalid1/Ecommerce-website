@@ -6,8 +6,9 @@ import vendor from '@/sanity/vendor'
 import cart from '@/sanity/cart'
 import popularstyles from '@/sanity/popularstyles'
 import popularmain from '@/sanity/popularmain'
+import order from '@/sanity/order'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [cart, products, beds,categories,popularmain,popularstyles,vendor],
+  types: [cart, products, beds,categories,popularmain,popularstyles,vendor, order],
 }
