@@ -25,10 +25,12 @@ const Cart = () => {
     return <div className=' p-6 text-3xl text-[#757575]'>Please Signup</div>;
   }
   // const email: any = user.primaryEmailAddress?.emailAddress;
-  const userId:any = user?.id; // Clerk's unique user ID for the signed-in user
+  const userId = user?.id || null; // Ensuring userId is defined
 
 
   useEffect(() => {
+    if (!userId) return; // Safe check inside the effect
+
     const fetchData = async () => {
       let query = `*[ _type == "cartItems" && userId == "${userId}"]`; 
       const cartdata = await client.fetch(query); 
@@ -57,9 +59,11 @@ const Cart = () => {
       //   return sum + itemTotal; // Accumulate the total price
       // }, 0);
     });
-
-    console.log(total);
   }, []);
+  if (!user) {
+    return <div className="p-6 text-3xl text-[#757575]">Please Signup</div>;
+  }
+
 
   console.log(total);
 

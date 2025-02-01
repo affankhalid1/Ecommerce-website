@@ -82,4 +82,4 @@ const Page = ({params}: {params: {query: string}}) => {
   )
 }
 
-export default page
+export default Page

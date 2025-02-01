@@ -98,7 +98,7 @@ const VendorPage =  ({params}: {params: {id: string}}) => {
     <div className='m-5 ml-0 flex flex-wrap justify-center sm:justify-start gap-x-5  2xl:gap-x-9 gap-y-10 sm:gap-y-24 w-[101%]'>
       {products.map((item:any) => {
 
-        return <div key={item.slug.current} className=''>
+        return <div key={item._id} className=''>
           <div className='product-image-with-icons w-[200px] h-[200px] xs:w-[140px] xs:h-[140px] sm:w-[180px] sm:h-[180px] lg:w-[200px] lg:h-[200px] xl:w-[220px] xl:h-[220px] 2xl:w-[235px] 2xl:h-[235px] rounded-md relative'>
             <div className='absolute top-2 left-2'>
               {item.offer == "New" &&<div className="discount w-fit bg-[#01AD5A] px-2 py-1 sm:px-4 sm:py-1.5 rounded-[4px]  flex justify-center items-center text-white text-[11px] sm:text-xs">{item.offer}</div>}
