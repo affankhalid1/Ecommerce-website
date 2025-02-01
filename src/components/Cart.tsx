@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import ImageUrlBuilder from "@sanity/image-url";
 import { DeleteItem } from "@/actions/Deleteitem";
 import {useRouter} from "next/navigation";
+
 
 
 const Cart = () => {
@@ -27,8 +29,9 @@ const Cart = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let query = `*[ _type == "cartItems" && userId == "${userId}"]`;
-      const cartdata = await client.fetch(query);
+      let query = `*[ _type == "cartItems" && userId == "${userId}"]`; 
+      const cartdata = await client.fetch(query); 
+      console.log(cartdata);
       return cartdata;
     };
 
@@ -126,7 +129,7 @@ const Cart = () => {
                         </div>
                         <div className="right-side">
                           <div className="text-[#111111] hidden sm:block">
-                            MRP: &nbsp;${item.price}
+                            MRP: &nbsp;${item.price*item.quantity}
                           </div>
                         </div>
                       </div>

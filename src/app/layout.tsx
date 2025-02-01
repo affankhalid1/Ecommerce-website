@@ -34,17 +34,15 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <CartProvider>
-          <Navbartop />
-      <Navbarmiddle />
-      <Navbarbottom />
+            <Navbartop />
+            <Navbarmiddle />
+            <Navbarbottom />
             <div className="container max-w-[70vw] mx-auto min-h-[75vh] overflow-x-hidden">
               {children}
             </div>
             <Footer />
-          </CartProvider>
         </body>
       </html>
-    </ClerkProvider>
+  </ClerkProvider>
   );
 }

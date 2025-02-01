@@ -24,7 +24,7 @@ const ImageZoom = ({ src }: { src: string }) => {
 
   return (
     <div
-  className="relative w-full max-w-[500px] h-auto sm:max-w-[650px] md:max-w-[750px] lg:max-w-[850px] overflow-hidden cursor-zoom-in"
+  className={`relative w-full h-[300px] sm:h-[450px] md:h-[550px] lg:h-[650px] overflow-hidden cursor-zoom-in`}
   onClick={handleImageClick}
   onMouseMove={handleMouseMove}
   style={{
@@ -34,18 +34,19 @@ const ImageZoom = ({ src }: { src: string }) => {
     backgroundRepeat: "no-repeat",
   }}
 >
-  {/* Show image when not zoomed */}
+  {/* Placeholder for the alt text */}
   {!isZoomed && (
     <Image
-      className="w-full h-auto object-contain"
+      className="w-full h-full object-contain" // Ensures the image adjusts responsively
       src={src}
       alt="product"
-      width={500} // Adjusted to match the example
-      height={500} // Adjusted to match the example
+      width={3000}
+      height={3000}
       draggable={false}
     />
   )}
 </div>
+
 
   );
 };

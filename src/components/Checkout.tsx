@@ -6,16 +6,22 @@ import convertToSubCurrency from '@/lib/ConvertToSubCurrency'
 const CheckoutPage = ({ amount }: { amount: number }) => {
     console.log(window.location.host)
 
-    const myhost = window.location.host
-    let URL = '';
+    // const myhost = window.location.host
+    // let URL = '';
 
-    if (myhost === 'localhost:3000') {
-        URL = 'http://localhost:3000'
-    }
-    else {
-        URL = 'https://stripe-payment-one-nu.vercel.app';
-    }
-
+    // if (myhost === 'localhost:3000') {
+    //     URL = 'http://localhost:3000'
+    // }
+    // else {
+    //     URL = 'https://stripe-payment-one-nu.vercel.app';
+    // }
+    const [returnUrl, setReturnUrl] = useState<string>("");
+    useEffect(() => {
+                if (typeof window !== "undefined") {
+                    const myhost = window.location.host;
+                    setReturnUrl(myhost === "localhost:3000" ? "http://localhost:3000" : "https://stripe-payment-one-nu.vercel.app");
+                }
+            }, []);
     const stripe = useStripe()
     const elements = useElements()
 
@@ -57,9 +63,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         const { error } = await stripe.confirmPayment({
             elements,
             clientSecret,
-            confirmParams: {
-                return_url: `${URL}/payment-success?amount=${amount}`
-            }
+            confirmParams: { return_url: `${returnUrl}/payment-success?amount=${amount}` },
         })
 
         if (error) {

@@ -11,8 +11,8 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-const StripePayment = () => {
-    const amount = 49.99
+const StripePayment = ({amount}:{amount:number}) => {
+    // const amount = 49.99
     return (
         <div>
 

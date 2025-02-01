@@ -3,8 +3,8 @@ import { title } from "process";
 import { defineArrayMember, Preview } from "sanity";
 
 const orders = {
-    name: "vendors",
-    title: "Vendors",
+    name: "orders",
+    title: "Orders",
     type: "document",
     fields: [
       {
