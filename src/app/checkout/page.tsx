@@ -14,7 +14,7 @@ const DynamicComponentWithNoSSR = dynamic(
   { ssr: false }
 )
 
-const page = () => {
+const Page = () => {
   const { user } = useUser(); // Extract the authenticated user
 
   const router = useRouter();

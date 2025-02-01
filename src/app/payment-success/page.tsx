@@ -28,28 +28,28 @@ const PaymentSuccess = ({ searchParams }: IParams) => {
 
   const router = useRouter();
 
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try{
+        await DeleteAllItem(userId)
+        console.log("All items deleted from cart")
+      }
+      catch(error){
+        console.error("error deleting cart items", error)
+      }
+    } 
+    
+    fetchData();
+    
+  }, []);
+  
+  
   if (!user) {
     return <div className=' p-6 text-3xl text-[#757575]'>Please Signup</div>;
   }
   // const email: any = user.primaryEmailAddress?.emailAddress;
   const userId:any = user?.id; // Clerk's unique user ID for the signed-in user
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try{
-      await DeleteAllItem(userId)
-        console.log("All items deleted from cart")
-      }
-      catch(error){
-            console.error("error deleting cart items", error)
-      }
- } 
-
- fetchData();
-   
-  }, []);
-
-
 
   
     return (

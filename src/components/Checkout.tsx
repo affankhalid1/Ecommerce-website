@@ -15,19 +15,21 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     // else {
     //     URL = 'https://stripe-payment-one-nu.vercel.app';
     // }
-    const [returnUrl, setReturnUrl] = useState<string>("");
-    useEffect(() => {
-                if (typeof window !== "undefined") {
-                    const myhost = window.location.host;
-                    setReturnUrl(myhost === "localhost:3000" ? "http://localhost:3000" : "https://stripe-payment-one-nu.vercel.app");
-                }
-            }, []);
     const stripe = useStripe()
     const elements = useElements()
 
     const [errorMessage, setError] = useState<string>()
     const [clientSecret, setClientSecret] = useState('')
     const [loading, setLoading] = useState(false)
+    const [returnUrl, setReturnUrl] = useState<string>("");
+
+    
+    useEffect(() => {
+                if (typeof window !== "undefined") {
+                    const myhost = window.location.host;
+                    setReturnUrl(myhost === "localhost:3000" ? "http://localhost:3000" : "https://stripe-payment-one-nu.vercel.app");
+                }
+            }, []);
 
 
     // as the payment method changes it is necessary to generate a new client secret.

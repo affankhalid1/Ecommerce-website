@@ -18,14 +18,15 @@ const Cart = () => {
 
   const router = useRouter();
 
+  const [cart, setcart] = useState([]);
+  const [total, settotal] = useState(0);
+  
   if (!user) {
     return <div className=' p-6 text-3xl text-[#757575]'>Please Signup</div>;
   }
   // const email: any = user.primaryEmailAddress?.emailAddress;
   const userId:any = user?.id; // Clerk's unique user ID for the signed-in user
 
-  const [cart, setcart] = useState([]);
-  const [total, settotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {

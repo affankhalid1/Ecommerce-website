@@ -9,7 +9,7 @@ import {CartManager} from '@/actions/CartManage'
 import { useUser } from "@clerk/nextjs";
 
 
-const page = ({params}: {params: {query: string}}) => {
+const Page = ({params}: {params: {query: string}}) => {
 
   const { user } = useUser(); // Extract the authenticated user
 
