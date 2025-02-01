@@ -30,7 +30,7 @@ const Allproducts = () => {
       <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-x-12 lg:gap-x-2 md:pr-10 xl:px-0 gap-y-12  sm:justify-start justify-center">
       {category.map((item: any) => {
         return (
-            <div className="flex justify-center mr-10">
+            <div key={item._id} className="flex justify-center mr-10">
               <Link href = {`/products/category/${item.slug.current}`} className="flex flex-col  relative justify-end mx-1 w-[220px] h-[220px] sm:h-[300px] sm:w-[300px]   2xl:h-[350px] 2xl:w-[350px] hover:scale-105  transition transform duration-300 ">
               <Image
                 className="object-contain rounded-lg"

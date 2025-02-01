@@ -21,9 +21,7 @@ const Cart = () => {
   const [cart, setcart] = useState([]);
   const [total, settotal] = useState(0);
   
-  if (!user) {
-    return <div className=' p-6 text-3xl text-[#757575]'>Please Signup</div>;
-  }
+  
   // const email: any = user.primaryEmailAddress?.emailAddress;
   const userId = user?.id || null; // Ensuring userId is defined
 
