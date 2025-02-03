@@ -72,7 +72,7 @@ const Navbarmiddle = () => {
       } `}
     >
       <div className="py-6 bg-[#F0F2F3] ">
-        <div className="w-[70vw] mx-auto flex justify-between ">
+        <div className="w-[70vw] mx-auto flex justify-between gap-3 ">
           <button onClick={handleClick} className="block sm:hidden">
             <Image
               className="hamburger "
@@ -100,17 +100,25 @@ const Navbarmiddle = () => {
                   Home
                 </NavLink>
                 <NavLink
-                  href="/shop"
+                  href="/products/category/sofas---couches"
                   className="block text-gray-700 hover:text-teal-500"
                 >
-                  Shop
+                  Sofas & Couches
                 </NavLink>
                 <NavLink
-                  href="/products"
+                  href="/products/category/beds"
                   className="block text-gray-700 hover:text-teal-500"
                 >
-                  Products
+                  Beds
                 </NavLink>
+                <NavLink
+                  href="/products/category/office-chair"
+                  className="block text-gray-700 hover:text-teal-500"
+                >
+                  Office Chairs
+                </NavLink>
+               
+                
                 <NavLink
                   href="/about"
                   className="block text-gray-700 hover:text-teal-500"
@@ -128,6 +136,12 @@ const Navbarmiddle = () => {
                   className="block text-gray-700 hover:text-teal-500"
                 >
                   Contact
+                </NavLink>
+                <NavLink
+                  href="/cart"
+                  className="block text-gray-700 hover:text-teal-500"
+                >
+                  Cart
                 </NavLink>
               </div>
             </nav>

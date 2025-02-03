@@ -21,9 +21,11 @@ const Navbarbottom = () => {
         <div className='nav hidden sm:block'>
         <div className='flex sm:gap-1 md:gap-2 lg:gap-4'>
         <NavLink href="/" className={(isActive) =>isActive ? 'text-[#007580] pl-0 px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] pl-0 px-2.5 py-5 md:p-5 font-[500]'}>Home</NavLink>
-        <NavLink href="/shop" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Shop</NavLink>
-        <NavLink href="/products" className={(isActive) =>isActive ?' text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Product</NavLink>
-        <NavLink href="/pages" className={(isActive) =>isActive ? 'text-[#4d5657] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Blogs</NavLink>
+        <NavLink href="/products/category/sofas---couches" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Sofa</NavLink>
+        <NavLink href="/products/category/beds" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Beds</NavLink>
+        
+        <NavLink href="/products/category/office-chair" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>Office </NavLink>
+       
         <NavLink href="/about" className={(isActive) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}>About</NavLink>
         <NavLink href="/contact" className={`block md:hidden ${(isActive: any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}`}>Contact</NavLink>
         <NavLink href="/faqs" className={`block md:hidden ${(isActive: any) =>isActive ? 'text-[#007580] px-2.5 py-5 md:p-5 font-[500]' : ' text-[#636270] px-2.5 py-5 md:p-5 font-[500]'}`}>Help</NavLink>

@@ -276,6 +276,7 @@ const sanitizedHtml = sanitizeHtml(rawHtml, {
               })
             }
             </div>
+            <div>
             <div className="relative flex items-center justify-center">
         {/* Previous Button */}
         <button
@@ -305,6 +306,7 @@ const sanitizedHtml = sanitizeHtml(rawHtml, {
           ▶
         </button>
       </div>
+            </div>
             {/* <div>
               <ProductImage
                 src={builder.image(selectedimage).width(3000).height(3000).url()}

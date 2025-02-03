@@ -43,13 +43,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onsear
         onChange={handleInputChange}
         onKeyDown={handleKeyPress} // Use onKeyDown instead of onKeyPress
         placeholder={placeholder}
-        className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#007580]"
+        className="flex-grow w-full px-4 py-2 border border-gray-300 rounded-md xs:rounded-l-md xs:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#007580]"
       />
 
 
       <button
         onClick={handleSearch}
-        className="px-4 py-2 text-white bg-[#007580] rounded-r-md hover:bg-[#1d5e64] focus:outline-none focus:ring-2 focus:ring-[#007580]"
+        className="px-4 py-2 hidden xs:block text-white bg-[#007580] rounded-r-md hover:bg-[#1d5e64] focus:outline-none focus:ring-2 focus:ring-[#007580]"
       >
         Search
       </button>
