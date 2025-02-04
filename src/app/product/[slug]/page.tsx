@@ -21,7 +21,6 @@ import DescriptionHtml from "@/components/DropdownDetailsHtml";
 import sanitizeHtml from "sanitize-html";
 import products from "@/src/style/products.module.css";
 const PortableText = dynamics(() => import('react-portable-text'), { ssr: false });
-import FilterPanel from "@/components/Filterpanel";
 
 
 
