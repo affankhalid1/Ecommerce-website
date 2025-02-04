@@ -21,6 +21,7 @@ import DescriptionHtml from "@/components/DropdownDetailsHtml";
 import sanitizeHtml from "sanitize-html";
 import products from "@/src/style/products.module.css";
 const PortableText = dynamics(() => import('react-portable-text'), { ssr: false });
+import FilterPanel from "@/components/Filterpanel";
 
 
 
@@ -281,16 +282,16 @@ const sanitizedHtml = sanitizeHtml(rawHtml, {
         {/* Previous Button */}
         <button
           onClick={handleprev}
-          className={`absolute left-0 bg-gray-800 text-white p-2 rounded-full opacity-75 hover:opacity-100 z-20 ${selectedimageIndex === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+          className={`absolute left-0 bg-white text-white p-2 rounded-full border-2 flex items-center justify-center border-[#007580] z-20 ${selectedimageIndex === 0 ? "opacity-80 cursor-not-allowed" : ""}`}
           disabled={selectedimageIndex === 0} // Disable when first image
         >
-          ◀
+          <Image className="w-[18px] h-[18px] xs:w-[22px] xs:h-[22px] sm:w-[30px] sm:h-[30px]  md:w-[37px] md:h-[37px]" src="/Svg/previcon.svg" width={37} height={37} alt='previous' />
         </button>
 
         {/* Main Image */}
         {selectedimageIndex !== null && single.images ? (
           <ProductImage
-            src={builder.image(single.images[selectedimageIndex]).width(3000).height(3000).url()}
+            src={builder.image(single.images[selectedimageIndex]).width(6000).height(6000).url()}
           />
         ) : (
           <p>No Image Available</p>
@@ -299,11 +300,11 @@ const sanitizedHtml = sanitizeHtml(rawHtml, {
         {/* Next Button */}
         <button
           onClick={handlenext}
-          className={`absolute right-0 bg-gray-800 text-white p-2 rounded-full opacity-75 hover:opacity-100 ${selectedimageIndex === single.images.length - 1 ? "opacity-50 cursor-not-allowed" : ""}`}
+          className={`absolute right-0 bg-white text-white p-2 rounded-full border-2 flex items-center justify-center border-[#007580] z-20 ${selectedimageIndex === single.images.length - 1 ? "opacity-80 cursor-not-allowed" : ""}`}
           disabled={selectedimageIndex === single.images.length - 1} // Disable when last image
           
         >
-          ▶
+          <Image className="w-[18px] h-[18px] xs:w-[22px] xs:h-[22px] sm:w-[30px] sm:h-[30px]  md:w-[37px] md:h-[37px]" src="/Svg/nexticon.svg" width={37} height={37} alt='next' />
         </button>
       </div>
             </div>

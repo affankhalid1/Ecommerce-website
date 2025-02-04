@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DOMPurify from "dompurify";
+import Image from "next/image";
 
 interface DescriptionProps {
   title: string;
@@ -32,7 +33,7 @@ const DescriptionHtml: React.FC<DescriptionProps> = ({ title, content }) => {
         onClick={toggleHidden}
       >
         <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
-        <span className="text-gray-500">{isHidden ? "▼" : "▲"}</span>
+        {isHidden ? <Image src="/Svg/arrowdownward.svg" alt="Down Arrow" width={30} height={30} /> : <Image src="/Svg/arrowupward.svg" alt="Up Arrow" width={30} height={30} />}
       </div>
 
       {/* Content */}

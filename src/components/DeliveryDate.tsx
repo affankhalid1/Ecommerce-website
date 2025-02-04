@@ -1,5 +1,6 @@
 // components/DeliveryDate.tsx
 import React from "react";
+import Image from "next/image";
 
 interface DeliveryDateProps {
   zipCode: string; // The destination zip code
@@ -29,7 +30,7 @@ const DeliveryDate: React.FC<DeliveryDateProps> = ({ zipCode, deliveryDays = 3 }
           <span className="text-[#029FAE]  underline">{zipCode}</span>
         </p>
       </div>
-      <div className="text-gray-500 cursor-pointer">&gt;</div>
+      <Image src="/Svg/nexticon.svg" width={20} height={20} alt = "arrow" />
     </div>
   );
 };

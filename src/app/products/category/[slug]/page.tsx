@@ -10,18 +10,34 @@ import { useUser } from "@clerk/nextjs";
 
 
 
+
 const CategoryPage =  ({params}: {params: {slug: string}}) => {
   const { user } = useUser(); // Extract the authenticated user
   
 
   // const email:any = user?.primaryEmailAddress?.emailAddress
   const userId:any = user?.id; // Clerk's unique user ID for the signed-in user
- 
 
   const builder = ImageUrlBuilder(client)
+
+
   const [categoryname, setcategoryname] = useState("");
- 
   const [products, setproducts] = useState([])
+
+  // Set the sorting option
+  const [sortOption, setSortOption] = useState("Most popular");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const options = [
+    { label: "Most popular", query: "ratingCount desc" },
+    { label: "Price (Low to High)", query: "price asc" },
+    { label: "Price (High to Low)", query: "price desc" },
+    { label: "Title (A to Z)", query: "title asc" },
+    { label: "Title (Z to A)", query: "title desc" },
+    
+  ];
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,10 +50,17 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
     
     const category_id = category._id
 
-    let query2 = `*[ _type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"]`
-    const categoryProducts = await  client.fetch(query2)
+    // let query2 = `*[ _type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"]`
+    // const categoryProducts = await  client.fetch(query2)
 
-    setproducts(categoryProducts)
+    // setproducts(categoryProducts)
+
+
+    const selectedQuery = options.find(option => option.label === sortOption)?.query || "popularity desc";
+    
+      const query2 = `*[_type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"] | order(${selectedQuery})`;
+      const categoryProductsfiltered = await client.fetch(query2);
+      setproducts(categoryProductsfiltered);
 
   }
   catch (error) {
@@ -46,15 +69,61 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
     };
 
     fetchData();
-  }, []);
+  }, [sortOption]);
+
         // Use a state object to track hover for each product
         const [isHovering, setIsHovering] = useState<{ [key: string]: boolean }>({});
 
   return (
     <div>
-            <div className="heading text-2xl justify-center text-center sm:text-start  sm:text-3xl  flex sm:justify-start font-bold text-[#272343] pt-8 sm:pt-24 pb-4 sm:pb-10">
+            <div className='flex flex-col  md:flex-row md:items-center gap-4 justify-between pr-5 pt-8 sm:pt-20 pb-4 sm:pb-10'>
+            <div className="heading text-2xl justify-center text-center sm:text-start  sm:text-3xl  flex sm:justify-start font-bold text-[#272343] ">
       {categoryname}
     </div> 
+
+     <div className='flex justify-center sm:justify-start'>
+     <div className="relative inline-block text-left ">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-gray-700 font-medium flex items-center gap-1"
+        >
+          <div className='flex flex-col  sm:flex-row '>
+          <div>Sort by:</div> <div className='flex'><div className="ml-1 text-teal-600">{sortOption} </div> <Image src="/Svg/arrowdownward.svg" width={20} height={20} alt="cart" /></div>
+          </div>
+          
+        </button>
+        {isOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
+            {options.map((option, index) => (
+              <div
+                key={index}
+                className={`px-4 py-2 text-gray-700 cursor-pointer hover:bg-teal-100 ${
+                  sortOption === option.label ? "bg-teal-500 text-white" : ""
+                }`}
+                onClick={() => {
+                  setSortOption(option.label);
+                  setIsOpen(false);
+                }}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+     </div>
+      {/* <div className="grid grid-cols-4 gap-4 mt-4">
+        {products.length> 0 && products.map((item:any) => (
+          <div key={item._id} className="border p-4 rounded-md shadow-md">
+            <Image src={builder.image(item.image).width(624).height(624).url()} width={624} height={624} alt={item.title} className="w-full h-40 object-cover" />
+            <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
+            <p className="text-gray-600">${item.price}</p>
+          </div>
+        ))}
+      </div> */}
+
+
+            </div>
     <div  className='m-5 ml-0 flex flex-wrap justify-center sm:justify-start gap-x-5  2xl:gap-x-9 gap-y-10 sm:gap-y-5 w-[101%]'>
       {products.map((item:any) => {
 
@@ -67,7 +136,7 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
 
             <Link href = {`/product/${item.slug.current}`}>
             <div onMouseOver={() => setIsHovering((prev) => ({ ...prev, [item.slug.current]: true }))}
-                  onMouseLeave={() => setIsHovering((prev) => ({ ...prev, [item.slug.current]: false }))} className=' flex justify-center  items-center w-[200px] h-[200px] xs:w-[140px] xs:h-[140px] sm:w-[180px] sm:h-[180px] lg:w-[200px] lg:h-[200px] xl:w-[220px] xl:h-[220px]  2xl:w-[235px] 2xl:h-[235px] bg-[#F5F5F5]'>
+                  onMouseLeave={() => setIsHovering((prev) => ({ ...prev, [item.slug.current]: false }))} className=' flex justify-center  items-center w-[200px] h-[200px] xs:w-[140px] xs:h-[140px] sm:w-[180px] sm:h-[180px] lg:w-[200px] lg:h-[200px] xl:w-[220px] xl:h-[220px]  2xl:w-[235px] 2xl:h-[235px] '>
               {isHovering[item.slug.current]?
               <Image className=' rounded-lg object-contain' src={builder.image(item.image2).width(624).height(624).url()} width={312} height={312} alt='product' />:
                <Image className=' rounded-lg object-contain' src={builder.image(item.image).width(624).height(624).url()} width={312} height={312} alt='product' />}
