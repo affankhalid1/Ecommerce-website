@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { use, useEffect } from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -7,6 +7,8 @@ import { client } from '@/sanity/lib/client'
 import  ImageUrlBuilder  from '@sanity/image-url'
 import {CartManager} from '@/actions/CartManage'
 import { useUser } from "@clerk/nextjs";
+import { useSearchParams, useRouter } from 'next/navigation'
+
 
 
 
@@ -21,13 +23,19 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
   const builder = ImageUrlBuilder(client)
 
 
+  const SearchParams = useSearchParams() //get Search Parameters from URL
+  const router = useRouter(); // To update the URL dynamically
+
+
   const [categoryname, setcategoryname] = useState("");
   const [products, setproducts] = useState([])
+  const [totalpages, settotalpages] = useState(1) // Store total pages
 
   // Set the sorting option
   const [sortOption, setSortOption] = useState("Most popular");
   const [isOpen, setIsOpen] = useState(false);
 
+  
   const options = [
     { label: "Most popular", query: "ratingCount desc" },
     { label: "Price (Low to High)", query: "price asc" },
@@ -36,12 +44,15 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
     { label: "Title (Z to A)", query: "title desc" },
     
   ];
-
+  
+  const ProductsperPage = 12; // Number of products per page
+  const currPage = parseInt(SearchParams.get('currpage')|| '1', 10) //Get page Number from URL
   
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
 
     let query = `*[ _type == "categories" && slug.current == "${params.slug}"][0]`
     const category = await  client.fetch(query)
@@ -49,16 +60,18 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
 
     
     const category_id = category._id
+    
+    // Fetch total number of products for pagination calculations
+    let totalquery = `count(*[ _type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"])`
+    const totalProducts = await  client.fetch(totalquery)
 
-    // let query2 = `*[ _type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"]`
-    // const categoryProducts = await  client.fetch(query2)
+    settotalpages(Math.ceil(totalProducts/ProductsperPage))
 
-    // setproducts(categoryProducts)
-
-
+    // Fetch paginated products
+    const start = (currPage - 1) * ProductsperPage
     const selectedQuery = options.find(option => option.label === sortOption)?.query || "popularity desc";
     
-      const query2 = `*[_type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"] | order(${selectedQuery})`;
+      const query2 = `*[_type == "products" && category._ref == "${category_id}" || _type == "beds" && category._ref == "${category_id}"] | order(${selectedQuery})[${start}...${start + ProductsperPage}]`;
       const categoryProductsfiltered = await client.fetch(query2);
       setproducts(categoryProductsfiltered);
 
@@ -69,7 +82,12 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
     };
 
     fetchData();
-  }, [sortOption]);
+  }, [currPage,sortOption]);
+
+// Function to change the page dynamically in the URL
+const handlePageChange = (page: number) => {
+  router.push(`?currpage=${page}`) // Updates the URL with the new page number
+};
 
         // Use a state object to track hover for each product
         const [isHovering, setIsHovering] = useState<{ [key: string]: boolean }>({});
@@ -162,8 +180,147 @@ const CategoryPage =  ({params}: {params: {slug: string}}) => {
         </div>
       })}
     </div>
+
+    {/* Pagination Controls */}
+       <div className="flex justify-center my-4 gap-3">
+         {/* Previous Page Button */}
+         <button onClick={() => handlePageChange(currPage - 1)} disabled={currPage === 1} className='size-10 flex justify-center items-center rounded-full border border-black'>
+         <Image className=' w-[13px] h-[13px] sm:w-[20px] sm:h-[20px]  ' src="/Svg/pageleftarrow.svg" width={25} height={25} alt='rightarrow' />
+         </button>
+
+         {/* Page Numbers */}
+         {Array.from({ length: totalpages }, (_, i) => i + 1).map((page) => (
+           <button key={page} onClick={() => handlePageChange(page)} className={`size-10   rounded-full ${currPage === page ? 'bg-teal-600 text-white' : 'bg-gray-200'}`}>
+             {page}
+           </button>
+         ))}
+
+         {/* Next Page Button */}
+         <button onClick={() => handlePageChange(currPage + 1)} disabled={currPage === totalpages} className='size-10 flex justify-center items-center rounded-full border border-black'>
+           <Image className=' w-[13px] h-[13px] sm:w-[20px] sm:h-[20px]  ' src="/Svg/pagerightarrow.svg" width={25} height={25} alt='leftarrow' />
+         </button>
+       </div>
     </div>
   )
 }
 
 export default CategoryPage
+
+// "use client"
+// import React, { useEffect, useState } from 'react';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import { useSearchParams, useRouter } from 'next/navigation'; // Import hooks to manage URL params
+// import { client } from '@/sanity/lib/client';
+// import ImageUrlBuilder from '@sanity/image-url';
+// import { CartManager } from '@/actions/CartManage';
+// import { useUser } from "@clerk/nextjs";
+
+// const CategoryPage = ({ params }: { params: { slug: string } }) => {
+//   const { user } = useUser(); // Extract the authenticated user
+//   const userId: any = user?.id; // Clerk's unique user ID for the signed-in user
+//   const builder = ImageUrlBuilder(client);
+
+//   const searchParams = useSearchParams(); // Get search parameters from the URL
+//   const router = useRouter(); // To update URL dynamically
+
+//   const [categoryName, setCategoryName] = useState("");
+//   const [products, setProducts] = useState([]);
+//   const [totalPages, setTotalPages] = useState(1); // Store total pages
+  
+//   // Set the sorting option
+//   const [sortOption, setSortOption] = useState("Most popular");
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const options = [
+//     { label: "Most popular", query: "ratingCount desc" },
+//     { label: "Price (Low to High)", query: "price asc" },
+//     { label: "Price (High to Low)", query: "price desc" },
+//     { label: "Title (A to Z)", query: "title asc" },
+//     { label: "Title (Z to A)", query: "title desc" },
+//   ];
+
+//   const productsPerPage = 12; // Number of products per page
+//   const currPage = parseInt(searchParams.get('currpage') || '1', 10); // Get page number from URL
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         // Fetch category details
+//         const query = `*[ _type == "categories" && slug.current == "${params.slug}"][0]`;
+//         const category = await client.fetch(query);
+//         setCategoryName(category?.title || "");
+
+//         if (!category?._id) return;
+//         const category_id = category._id;
+        
+//         // Fetch total number of products for pagination calculation
+//         const totalQuery = `count(*[_type == "products" && category._ref == "${category_id}"])`;
+//         const totalProducts = await client.fetch(totalQuery);
+//         setTotalPages(Math.ceil(totalProducts / productsPerPage)); // Calculate total pages
+        
+//         // Fetch paginated products
+//         const start = (currPage - 1) * productsPerPage;
+//         const selectedQuery = options.find(option => option.label === sortOption)?.query || "popularity desc";
+        
+//         const query2 = `*[_type == "products" && category._ref == "${category_id}"]
+//                         | order(${selectedQuery})[${start}...${start + productsPerPage}]`;
+//         const categoryProductsFiltered = await client.fetch(query2);
+//         setProducts(categoryProductsFiltered);
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
+//     fetchData();
+//   }, [currPage, sortOption]); // Re-fetch when page number or sort option changes
+
+//   // Function to change the page dynamically in the URL
+//   const handlePageChange = (page: number) => {
+//     router.push(`?currpage=${page}`); // Updates the URL with the new page number
+//   };
+
+//   return (
+//     <div>
+//       <div className='flex flex-col md:flex-row md:items-center gap-4 justify-between pr-5 pt-8 sm:pt-20 pb-4 sm:pb-10'>
+//         <div className="heading text-2xl justify-center text-center sm:text-start sm:text-3xl flex sm:justify-start font-bold text-[#272343]">
+//           {categoryName}
+//         </div>
+//       </div>
+
+//       <div className='m-5 ml-0 flex flex-wrap justify-center sm:justify-start gap-x-5 2xl:gap-x-9 gap-y-10 sm:gap-y-5 w-[101%]'>
+//         {products.map((item: any) => (
+//           <div key={item._id}>
+//             <Link href={`/product/${item.slug.current}`}>
+//               <Image src={builder.image(item.image).width(624).height(624).url()} width={312} height={312} alt={item.title} className='rounded-lg object-contain' />
+//             </Link>
+//             <div>{item.title}</div>
+//             <div className='text-[#DB4444] font-semibold'>{`$ ${item.price}`}</div>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Pagination Controls */}
+//       <div className="flex justify-center my-4 gap-3">
+//         {/* Previous Page Button */}
+//         <button onClick={() => handlePageChange(currPage - 1)} disabled={currPage === 1} className='px-4 py-2 rounded-md bg-teal-500 hover:bg-teal-600 text-white disabled:bg-gray-300'>
+//           Previous
+//         </button>
+
+//         {/* Page Numbers */}
+//         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+//           <button key={page} onClick={() => handlePageChange(page)} className={`px-4 py-2 rounded-md ${currPage === page ? 'bg-teal-600 text-white' : 'bg-gray-200'}`}>
+//             {page}
+//           </button>
+//         ))}
+
+//         {/* Next Page Button */}
+//         <button onClick={() => handlePageChange(currPage + 1)} disabled={currPage === totalPages} className='px-4 py-2 rounded-md bg-teal-500 hover:bg-teal-600 text-white disabled:bg-gray-300'>
+//           Next
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default CategoryPage;
+

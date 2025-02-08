@@ -80,7 +80,8 @@ const Product = ({ params }: { params: { slug: string } }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const query1 = `*[ _type == "products" && slug.current == "${params.slug}" || _type == "beds" && slug.current == "${params.slug}"][0]`;
+        const query1 = `*[ _type == "products" && slug.current == "${params.slug}"
+         || _type == "beds" && slug.current == "${params.slug}"][0]`;
         const singleProduct = await client.fetch(query1);
         setSingle(singleProduct);
         console.log(singleProduct);
